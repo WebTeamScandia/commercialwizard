@@ -22,7 +22,7 @@ class Home extends BaseController
 		return view('admin_panel');
 	}
 
-	public function crateProposal() {
+	public function createProposal() {
 		if($this->request->getMethod()=='post') {
 			$saunas = [];
 			$steams = [];
@@ -32,6 +32,7 @@ class Home extends BaseController
 				$sauna_rooms = [];
 
 				if(isset($_POST['sauna_same_dims'])) {
+					
 					//instantiate Room class with $_POST info
 					//add instance of Room to $sauna_rooms
 				}
@@ -53,7 +54,7 @@ class Home extends BaseController
 				}
 
 				//add sauna's accessories
-				if(isset('sauna-same-accessories')) {
+				if(isset($_POST['sauna-same-accessories'])) {
 
 				}
 				else {
@@ -63,12 +64,12 @@ class Home extends BaseController
 				}
 
 				if(!empty($_POST['saunas-shipping'])) {
-					foreach $sauna_rooms as $room {
+					foreach($sauna_rooms as $room) {
 						//add $_POST['saunas-shipping'] to every Room instance 
 					}
 				}
 
-				foreach $sauna_rooms as $room {
+				foreach($sauna_rooms as $room) {
 					//Instantiate Sauna class with $room and $_POST info
 					//add instance to $saunas array
 				}
