@@ -1,0 +1,44 @@
+CRITICAL - 2021-08-27 11:28:19 --> Undefined index: VistoAntes
+#0 C:\xampp\htdocs\commercialwizard\app\Views\admin_panel.php(10): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined index...', 'C:\\xampp\\htdocs...', 10, Array)
+#1 C:\xampp\htdocs\commercialwizard\system\View\View.php(230): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\commercialwizard\system\View\View.php(232): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\commercialwizard\system\Common.php(1271): CodeIgniter\View\View->render('admin_panel', Array, true)
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(20): view('admin_panel')
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->admin_panel()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-08-27 11:31:05 --> Undefined variable: VistoAntes
+#0 C:\xampp\htdocs\commercialwizard\app\Views\admin_panel.php(10): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 10, Array)
+#1 C:\xampp\htdocs\commercialwizard\system\View\View.php(230): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\commercialwizard\system\View\View.php(232): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\commercialwizard\system\Common.php(1271): CodeIgniter\View\View->render('admin_panel', Array, true)
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(20): view('admin_panel')
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->admin_panel()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-08-27 11:32:18 --> Undefined variable: VistoAntes
+#0 C:\xampp\htdocs\commercialwizard\app\Views\admin_panel.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 9, Array)
+#1 C:\xampp\htdocs\commercialwizard\system\View\View.php(230): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\commercialwizard\system\View\View.php(232): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\commercialwizard\system\Common.php(1271): CodeIgniter\View\View->render('admin_panel', Array, true)
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(20): view('admin_panel')
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->admin_panel()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-08-27 11:32:24 --> Undefined variable: VistoAntes
+#0 C:\xampp\htdocs\commercialwizard\app\Views\admin_panel.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 9, Array)
+#1 C:\xampp\htdocs\commercialwizard\system\View\View.php(230): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\commercialwizard\system\View\View.php(232): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+#3 C:\xampp\htdocs\commercialwizard\system\Common.php(1271): CodeIgniter\View\View->render('admin_panel', Array, true)
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(20): view('admin_panel')
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->admin_panel()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
