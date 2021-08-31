@@ -14,6 +14,10 @@ class Home extends BaseController
 			'passcode' => 'Daley09821'
 		];
 
+		if($this->request->getMethod()=='post') {
+			createProposal();
+		}
+
 		return view('main_view', $data);
 	}
 
@@ -23,89 +27,146 @@ class Home extends BaseController
 	}
 
 	public function createProposal() {
-		if($this->request->getMethod()=='post') {
-			echo '<pre>';
-			print_r($_POST);
-		  	echo '<pre>';
-			$saunas = [];
-			$steams = [];
+		echo '<pre>';
+		print_r($_POST);
+		echo '<pre>';
+		$saunas = [];
+		$steams = [];
 
-			if(isset($_POST['sauna'])) {
-				
-				$num_saunas = intval($_POST['num-saunas']);
+		if(isset($_POST['sauna'])) {
 
-				if(isset($_POST['sauna-same-dims']) && isset($_POST['sauna-same-heater'])) {
-					$width = intval($_POST['sauna-width'][0]);
-					$lenght = intval($_POST['sauna-length'][0]);
-					$height = intval($_POST['sauna-height'][0]);
+			$saunas = createSaunas();
 
-					$shipping_cost = intval($_POST['saunas-shipping']);
-					
-					$heater_type = $_POST['heater'][0]; //missing validation.
-					
-					$width_ft = $width/12;
-					$lenght_ft = $lenght/12;
-					$height_ft = $height/12;
-					$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
-					
-					$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+			if(!empty($_POST['discount'])) {
 
-					$heater_info = getHeaterInfo($heater_type, $sauna_volume_ft3);
+			}
 
-					$price = calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+			if(!empty($_POST['tax'])) {
 
-					$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
-					
-					for($i=0; $i<($num_saunas-1); $i++) {
-						array_push($saunas, $sauna);
-					}
-				}
-				else if(isset($_POST['sauna-same-dims'])){ //same dims but different heaters
-					$width = intval($_POST['sauna-width'][0]);
-					$lenght = intval($_POST['sauna-length'][0]);
-					$height = intval($_POST['sauna-height'][0]);
-					
-					$shipping_cost = intval($_POST['saunas-shipping']);
-					
-					$width_ft = $width/12;
-					$lenght_ft = $lenght/12;
-					$height_ft = $height/12;
-					$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
-					
-					$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
-
-					for($i=0; $i<($num_saunas-1); $i++) {
-						$heater_type = $_POST['heater'][$i]; //missing validation.
-					}
-				}
-				else if(isset($_POST['sauna-same-heater'])) { //same heater type but different dims
-
-				}
-				else { //different heaters and dims
-
-				}
-
-				//add sauna's accessories
-				if(isset($_POST['sauna-same-accessories'])) {
-
-				}
-				else {
-					
-				}
-
-				if(!empty($_POST['discount'])) {
-
-				}
-
-				if(!empty($_POST['tax'])) {
-
-				}
-				
 			}
 			
-			if(isset($_POST['steam'])) {
-				
+		}
+		
+		if(isset($_POST['steam'])) {
+			
+		}
+	}
+
+	private function createSaunas() {
+		$num_saunas = intval($_POST['num-saunas']);
+
+		if(isset($_POST['sauna-same-dims']) && isset($_POST['sauna-same-heater'])) {
+			$width = intval($_POST['sauna-width'][0]);
+			$lenght = intval($_POST['sauna-length'][0]);
+			$height = intval($_POST['sauna-height'][0]);
+
+			$shipping_cost = intval($_POST['saunas-shipping']);
+			
+			$heater_type = $_POST['heater'][0];
+			
+			$width_ft = $width/12;
+			$lenght_ft = $lenght/12;
+			$height_ft = $height/12;
+			$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+			
+			$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+
+			$heater_info = getHeaterInfo($heater_type, $sauna_volume_ft3);
+
+			$price = calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+
+			$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+			
+			for($i=0; $i<$num_saunas; $i++) {
+				array_push($saunas, $sauna);
 			}
+		}
+		else if(isset($_POST['sauna-same-dims'])){ //same dims but different heaters
+			$width = intval($_POST['sauna-width'][0]);
+			$lenght = intval($_POST['sauna-length'][0]);
+			$height = intval($_POST['sauna-height'][0]);
+			
+			$shipping_cost = intval($_POST['saunas-shipping']);
+			
+			$width_ft = $width/12;
+			$lenght_ft = $lenght/12;
+			$height_ft = $height/12;
+			$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+			
+			$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+
+			for($i=0; $i<$num_saunas; $i++) {
+
+				$heater_type = $_POST['heater'][$i];
+
+				$heater_info = getHeaterInfo($heater_type, $sauna_volume_ft3);
+
+				$price = calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+
+				array_push($saunas, $sauna);
+			}
+		}
+		else if(isset($_POST['sauna-same-heater'])) { //same heater type but different dims
+			$heater_type = $_POST['heater'][0];
+
+			$shipping_cost = intval($_POST['saunas-shipping']);
+
+			$heater_info = getHeaterInfo($heater_type, $sauna_volume_ft3);
+
+			for($i=0; $i<$num_saunas; $i++) {
+				$width = intval($_POST['sauna-width'][$i]);
+				$lenght = intval($_POST['sauna-length'][$i]);
+				$height = intval($_POST['sauna-height'][$i]);
+
+				$width_ft = $width/12;
+				$lenght_ft = $lenght/12;
+				$height_ft = $height/12;
+				$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+
+				$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+
+				$price = calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+
+				array_push($saunas, $sauna);
+			}
+		}
+		else { //different heaters and dims
+			for($i=0; $i<$num_saunas; $i++) {
+				$width = intval($_POST['sauna-width'][$i]);
+				$lenght = intval($_POST['sauna-length'][$i]);
+				$height = intval($_POST['sauna-height'][$i]);
+
+				$shipping_cost = intval($_POST['saunas-shipping']);
+				
+				$heater_type = $_POST['heater'][$i]; 
+				
+				$width_ft = $width/12;
+				$lenght_ft = $lenght/12;
+				$height_ft = $height/12;
+				$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+				
+				$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+
+				$heater_info = getHeaterInfo($heater_type, $sauna_volume_ft3);
+
+				$price = calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+
+				array_push($saunas, $sauna);
+			}
+		}
+
+		//add sauna's accessories
+		if(isset($_POST['sauna-same-accessories'])) {
+
+		}
+		else {
+			
 		}
 	}
 
