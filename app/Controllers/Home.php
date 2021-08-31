@@ -33,17 +33,13 @@ class Home extends BaseController
 		$saunas = [];
 		$steams = [];
 
+		//proposal discout info
+
+		//proposal sales tax info
+
 		if(isset($_POST['sauna'])) {
 
 			$saunas = createSaunas();
-
-			if(!empty($_POST['discount'])) {
-
-			}
-
-			if(!empty($_POST['tax'])) {
-
-			}
 			
 		}
 		
