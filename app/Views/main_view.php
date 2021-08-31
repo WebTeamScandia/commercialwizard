@@ -180,7 +180,7 @@
         <?= view("components/sauna_heater")?>
       </li>
     </ul>
-    <ul class="mb-5" id="saunas-accessories" style="display:none">
+    <ul class="mb-5" id="sauna-accessories" style="display:none">
       <li>
         <?= view("components/sauna_accessories")?>
       </li>

@@ -1,6 +1,8 @@
-<?php
-class Sauna {
-    private $database;
+<?php namespace App\Models;
+
+use CodeIgniter\Model;
+
+class Sauna extends Model{
 
     private $width;
     private $length;
@@ -34,8 +36,7 @@ class Sauna {
      * @param string upgrade [eco-sauna | modular | handfinish]: specifies if the Sauna has any upgrade selected.
      * @param number shipping_cost: additional cost for shipping, specified by the user.
      */
-    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $price, $shipping_cost = 0, $accesories = [], $discount = 0, $sales_tax = 0, $is_condominium = false, $has_full_length_board = false, $upgrade = '', ConnectionInterface &$database) {
-        $this->database =& $database;
+    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $price, $shipping_cost) {
         
         $this->width = $width;
         $this->height = $height;
@@ -45,13 +46,7 @@ class Sauna {
         $this->heater_price = $heater_price;
         $this->$heater_watt = $heater_watt;
         $this->$pc = $pc;
-        $this->accessories = $accesories;
-        $this->discount = $discount;
-        $this->sales_tax = $sales_tax;
-        $this->is_condominium = $is_condominium;
-        $this->has_full_length_board = $has_full_length_board;
-        $this->upgrade = $upgrade = $upgrade;
-        $this->shipping_cost = $shipping_cost;
+        $this->$shipping_cost = $shipping_cost;
     }
 
     public function addAccessory($accessory) {

@@ -3,9 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\Sauna;
-use App\Models\Steam;
-use App\Models\Proposal;
-use App\Models\Accessory;
+use app\Models\Steam;
+use app\Models\Proposal;
+use app\Models\Accessory;
 
 class Home extends BaseController
 {
@@ -62,7 +62,7 @@ class Home extends BaseController
 
 		if(isset($_POST['sauna-same-dims']) && isset($_POST['sauna-same-heater'])) {
 			$width = intval($_POST['sauna-width'][0]);
-			$lenght = intval($_POST['sauna-length'][0]);
+			$length = intval($_POST['sauna-length'][0]);
 			$height = intval($_POST['sauna-height'][0]);
 
 			$shipping_cost = intval($_POST['saunas-shipping']);
@@ -70,15 +70,15 @@ class Home extends BaseController
 			$heater_type = $_POST['heater'][0];
 			
 			$width_ft = $width/12;
-			$lenght_ft = $lenght/12;
+			$length_ft = $length/12;
 			$height_ft = $height/12;
-			$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+			$sauna_volume_ft3 =  $width_ft * $length_ft * $height_ft;
 			
-			$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+			$pc = 'PC' . intval($width_ft) . intval($length_ft) . '-' . intval($height_ft);
 
 			$heater_info = $this->getHeaterInfo($heater_type, $sauna_volume_ft3);
 
-			$price = $this->calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+			$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
 			$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
 			
@@ -88,17 +88,17 @@ class Home extends BaseController
 		}
 		else if(isset($_POST['sauna-same-dims'])){ //same dims but different heaters
 			$width = intval($_POST['sauna-width'][0]);
-			$lenght = intval($_POST['sauna-length'][0]);
+			$length = intval($_POST['sauna-length'][0]);
 			$height = intval($_POST['sauna-height'][0]);
 			
 			$shipping_cost = intval($_POST['saunas-shipping']);
 			
 			$width_ft = $width/12;
-			$lenght_ft = $lenght/12;
+			$length_ft = $length/12;
 			$height_ft = $height/12;
-			$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+			$sauna_volume_ft3 =  $width_ft * $length_ft * $height_ft;
 			
-			$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+			$pc = 'PC' . intval($width_ft) . intval($length_ft) . '-' . intval($height_ft);
 
 			for($i=0; $i<$num_saunas; $i++) {
 
@@ -106,7 +106,7 @@ class Home extends BaseController
 
 				$heater_info = $this->getHeaterInfo($heater_type, $sauna_volume_ft3);
 
-				$price = $this->calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
 				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
 
@@ -122,17 +122,17 @@ class Home extends BaseController
 
 			for($i=0; $i<$num_saunas; $i++) {
 				$width = intval($_POST['sauna-width'][$i]);
-				$lenght = intval($_POST['sauna-length'][$i]);
+				$length = intval($_POST['sauna-length'][$i]);
 				$height = intval($_POST['sauna-height'][$i]);
 
 				$width_ft = $width/12;
-				$lenght_ft = $lenght/12;
+				$length_ft = $length/12;
 				$height_ft = $height/12;
-				$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+				$sauna_volume_ft3 =  $width_ft * $length_ft * $height_ft;
 
-				$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+				$pc = 'PC' . intval($width_ft) . intval($length_ft) . '-' . intval($height_ft);
 
-				$price = $this->calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
 				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
 
@@ -142,7 +142,7 @@ class Home extends BaseController
 		else { //different heaters and dims
 			for($i=0; $i<$num_saunas; $i++) {
 				$width = intval($_POST['sauna-width'][$i]);
-				$lenght = intval($_POST['sauna-length'][$i]);
+				$length = intval($_POST['sauna-length'][$i]);
 				$height = intval($_POST['sauna-height'][$i]);
 
 				$shipping_cost = intval($_POST['saunas-shipping']);
@@ -150,15 +150,15 @@ class Home extends BaseController
 				$heater_type = $_POST['heater'][$i]; 
 				
 				$width_ft = $width/12;
-				$lenght_ft = $lenght/12;
+				$length_ft = $length/12;
 				$height_ft = $height/12;
-				$sauna_volume_ft3 =  $width_ft * $lenght_ft * $height_ft;
+				$sauna_volume_ft3 =  $width_ft * $length_ft * $height_ft;
 				
-				$pc = 'PC' . inval($width_ft) . intval($lenght_ft) . '-' . intval($height_ft);
+				$pc = 'PC' . intval($width_ft) . intval($length_ft) . '-' . intval($height_ft);
 
 				$heater_info = $this->getHeaterInfo($heater_type, $sauna_volume_ft3);
 
-				$price = $this->calculateSaunaInitPrice($width, $lenght, $height, $heater_info['price']);
+				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
 				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
 
@@ -168,7 +168,9 @@ class Home extends BaseController
 
 		//add sauna's accessories
 		if(isset($_POST['sauna-same-accessories'])) {
+			foreach($saunas as $sauna) {
 
+			}
 		}
 		else {
 			
@@ -235,7 +237,7 @@ class Home extends BaseController
 		return $heater_info;
 	}
 
-	public function calculateSaunaInitPrice($width, $lenght, $height, $heater_price) {
+	public function calculateSaunaInitPrice($width, $length, $height, $heater_price) {
 
 	}
 }
