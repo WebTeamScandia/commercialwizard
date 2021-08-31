@@ -122,7 +122,7 @@
         pw_prompt({
             lm:"Please enter the passcode:", 
             callback: function(password) {
-                if(password == "get PW from somewhere safe") {
+                if(password == "<?= $passcode ?>") {
                     document.getElementById("admin-form").submit();
                 }
             }

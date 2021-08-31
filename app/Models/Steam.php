@@ -1,6 +1,11 @@
 <?php
 class Steam {
-    private $room;
+    
+    private $width;
+    private $length;
+    private $height;
+    private $price;
+    private $accesories;
     private $model;
     private $heater_type;
     private $heater_price;
@@ -10,26 +15,44 @@ class Steam {
     
     /**
      * Required parameters:
-     * @param Room room: 
-     * - model (string): the model for the steam room, it follows the sintax #(ASR-)[0-9]*-[0-9]*#
-     * - heater_type (string): specifies if the room is a Boiler Steam Room or a Generator Steam room.
-     *   Possible values [boiler | generator]
-     * - heater_model (string): the model for the heater included in the steam room, it follows the 
-     *   sintax #A(K|I)-(\d\d|\d\.\d)#
+     * @param number width: specify the width of the room in inches.
+     * @param number length: specify the length of the room in inches.
+     * @param number height: specify the height of the room in inches.
+     * @param number price: the base price for the sauna room.
+     * @param string model: the model for the steam room, it follows the sintax #(ASR-)[0-9]*-[0-9]*#
+     * @param string heater_type [boiler | generator]: specifies if the room is a Boiler Steam Room or a Generator Steam room.
+     * @param number heater_price
+     * @param string heater_model: the model for the heater included in the steam room, it follows the sintax #A(K|I)-(\d\d|\d\.\d)# 
      * Optional parameters:
-     * - upgrade (string): currently Steam rooms only support one type of upgrades, but the field is taken
+     * @param array[Accessory] accessories [Default value = empty array].
+     * @param string upgrade:  currently Steam rooms only support one type of upgrades, but the field is taken
      *   as a string instead of a boolean for scalability.
-     * - shipping_cost (numeric): additional cost for shipping, specified by the user.
+     * @param number shipping_cost
      */
-    public function __construct($room, $model, $heater_type, $heater_price, $heater_model, $upgrade = '', $shipping_cost = 0) {
-        $this->database = new Database;
+    public function __construct($width, $length, $height, $price, $model, $heater_type, $heater_price, $heater_model, $accesories = [], $upgrade = '', $shipping_cost = 0, ConnectionInterface &$database) {
+        $this->database =& $database;
         
+        $this->width = $width;
+        $this->height = $height;
+        $this->length = $length;
+        $this->price = $price;
         $this->model = $model;
         $this->heater_price = $heater_price;
         $this->heater_type = $heater_type;
         $this->heater_model = $heater_model;
+        $this->accessories = $accesories;
+        $this->discount = $discount;
+        $this->sales_tax = $sales_tax;
         $this->upgrade = $upgrade;
         $this->shipping_cost = $shipping_cost;
+    }
+
+    public function addAccessory($accessory) {
+        array_push($this->accsessories, $accessory);
+    }
+
+    public function changeBasePrice($new_price) {
+        //db stuff here
     }
 
     /**
@@ -148,6 +171,134 @@ class Steam {
     public function setShippingCost($shipping_cost)
     {
         $this->shipping_cost = $shipping_cost;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of width
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Set the value of width
+     *
+     * @return  self
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of length
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    /**
+     * Set the value of length
+     *
+     * @return  self
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of height
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Set the value of height
+     *
+     * @return  self
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of price
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of accesories
+     */
+    public function getAccesories()
+    {
+        return $this->accesories;
+    }
+
+    /**
+     * Get the value of discount
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * Set the value of discount
+     *
+     * @return  self
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sales_tax
+     */
+    public function getSalesTax()
+    {
+        return $this->sales_tax;
+    }
+
+    /**
+     * Set the value of sales_tax
+     *
+     * @return  self
+     */
+    public function setSalesTax($sales_tax)
+    {
+        $this->sales_tax = $sales_tax;
 
         return $this;
     }

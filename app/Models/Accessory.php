@@ -2,9 +2,10 @@
     namespace App\Models;
 
     use CodeIgniter\Model;
+    use CodeIgniter\Database\ConnectionInterface;
 
     class Accessory {
-        private $database;
+        protected $database;
 
         protected $allowed_fields = ['name','description','price','price_is_base'];
 
@@ -19,8 +20,8 @@
          * @param String $room_type ["sauna" | "steam"]: indicates if the accessory belongs to a Sauna room or a Steam room.
          * @param Number $qty [default value = 1]: number of accessories of the same type included in a single room.
          */
-        public function __construct($name, $room_type, $qty = 1) {
-            $this->database = new Database;
+        public function __construct($name, $room_type, $qty = 1, ConnectionInterface &$database) {
+            $this->database =& $database;
 
             $this->name = $name;
             $this->qty = $qty;
@@ -43,29 +44,22 @@
         }
 
         private function get_db_description() {
-            $query = '';
             if($this->room_type == 'sauna') {
-                $query = "SELECT description FROM scandiawizard.sauna_accessories WHERE name =" . $this->name;
+                //"SELECT description FROM scandiawizard.sauna_accessories WHERE name =" . $this->name;
+                return $this->database->table('sauna_accessories')->select('name')->where(['name' => $this->name])->get()->getRow();
             }
             else {
-                $query = "SELECT description FROM scandiawizard.steam_accessories WHERE name =" . $this->name;
+                return $this->database->table('steam_accessories')->select('name')->where(['name' => $this->name])->get()->getRow();
             }
-            $this->database->query($query);
-            $result = $this->database->result_set();
-            return $result;
         }
 
         private function get_db_price() {
-            $query = '';
             if($this->room_type == 'sauna') {
-                $query = "SELECT price FROM scandiawizard.sauna_accessories WHERE name =" . $this->name;
+                return $this->database->table('sauna_accessories')->select('price')->where(['name' => $this->name])->get()->getRow();
             }
             else {
-                $query = "SELECT price FROM scandiawizard.steam_accessories WHERE name =" . $this->name;
+                return $this->database->table('steam_accessories')->select('price')->where(['name' => $this->name])->get()->getRow();
             }
-            $this->database->query($query);
-            $result = $this->database->result_set();
-            return $result;
         }
 
 

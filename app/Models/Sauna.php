@@ -1,7 +1,11 @@
 <?php
-class Sauna extends Room {
+class Sauna {
     private $database;
 
+    private $width;
+    private $length;
+    private $height;
+    private $accesories;
     private $price;
     private $heater_type;
     private $heater_price;
@@ -14,33 +18,48 @@ class Sauna extends Room {
 
     /**
      * Required params
-     * --- width, length and height: parent's required params.
-     * @param Room room
-     * @param number price: the base price for the sauna room.
+     * @param number width: specify the width of the room in inches.
+     * @param number length: specify the length of the room in inches.
+     * @param number height: specify the height of the room in inches.
+     * @param String pc: the name of the PC model for the sauna room. This value follows the sintax #(pc)[0-9]*-[0-9]*#.
      * @param String heater_type [electric | gas]: specifies the heater type for the sauna room.
      * @param number heater_price
      * @param String heater_watt: the amont of power required for the sauna room.
-     * @param String pc: the name of the PC model for the sauna room. This value follows the sintax #(pc)[0-9]*-[0-9]*#.
+     * @param number price: the base price for the sauna room.
      *   
      * Optional params
-     * --- accessories, discount, sales_tax: parent's optional params.
+     * @param array[Accessory] accessories [Default value = empty array].
      * @param boolean is_condominium: Saunas for condominiums must have this value set as true. Other type of sauna projects (LA Fitness, Gold's gym, YMCA, etc.) must have this value set as false.
      * @param boolean has_full_length_board: includes the full length board accessory.
      * @param string upgrade [eco-sauna | modular | handfinish]: specifies if the Sauna has any upgrade selected.
      * @param number shipping_cost: additional cost for shipping, specified by the user.
      */
-    public function __construct($room, $price, $heater_type, $heater_price, $heater_watt, $pc, $is_condominium = false, $has_full_length_board = false, $upgrade = '', $shipping_cost = 0) {
-        $this->database = new Database;
+    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $price, $shipping_cost = 0, $accesories = [], $discount = 0, $sales_tax = 0, $is_condominium = false, $has_full_length_board = false, $upgrade = '', ConnectionInterface &$database) {
+        $this->database =& $database;
         
+        $this->width = $width;
+        $this->height = $height;
+        $this->length = $length;
         $this->price = $price;
         $this->heater_type = $heater_type;
         $this->heater_price = $heater_price;
         $this->$heater_watt = $heater_watt;
         $this->$pc = $pc;
+        $this->accessories = $accesories;
+        $this->discount = $discount;
+        $this->sales_tax = $sales_tax;
         $this->is_condominium = $is_condominium;
         $this->has_full_length_board = $has_full_length_board;
         $this->upgrade = $upgrade = $upgrade;
         $this->shipping_cost = $shipping_cost;
+    }
+
+    public function addAccessory($accessory) {
+        array_push($this->accsessories, $accessory);
+    }
+
+    public function changeBasePrice($new_price) {
+        //db stuff here
     }
 
     /**
@@ -219,6 +238,115 @@ class Sauna extends Room {
     public function setShippingCost($shipping_cost)
     {
         $this->shipping_cost = $shipping_cost;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of width
+     */
+    public function getWidth()
+    {
+        return $this->width;
+    }
+
+    /**
+     * Set the value of width
+     *
+     * @return  self
+     */
+    public function setWidth($width)
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of length
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+
+    /**
+     * Set the value of length
+     *
+     * @return  self
+     */
+    public function setLength($length)
+    {
+        $this->length = $length;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of height
+     */
+    public function getHeight()
+    {
+        return $this->height;
+    }
+
+    /**
+     * Set the value of height
+     *
+     * @return  self
+     */
+    public function setHeight($height)
+    {
+        $this->height = $height;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of accesories
+     */
+    public function getAccesories()
+    {
+        return $this->accesories;
+    }
+
+
+    /**
+     * Get the value of discount
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * Set the value of discount
+     *
+     * @return  self
+     */
+    public function setDiscount($discount)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sales_tax
+     */
+    public function getSalesTax()
+    {
+        return $this->sales_tax;
+    }
+
+    /**
+     * Set the value of sales_tax
+     *
+     * @return  self
+     */
+    public function setSalesTax($sales_tax)
+    {
+        $this->sales_tax = $sales_tax;
 
         return $this;
     }
