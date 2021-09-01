@@ -1,0 +1,59 @@
+CRITICAL - 2021-09-01 09:58:58 --> Array to string conversion
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(17): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string...', 'C:\\xampp\\htdocs...', 17, Array)
+#1 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-09-01 09:59:14 --> syntax error, unexpected 'public' (T_PUBLIC), expecting end of file
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-01 09:59:52 --> syntax error, unexpected '&'
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-01 10:20:16 --> syntax error, unexpected 'public' (T_PUBLIC), expecting end of file
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Prop...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Prop...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(39): spl_autoload_call('App\\Models\\Prop...')
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(18): App\Controllers\ProposalController->create_proposal()
+#5 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): App\Controllers\ProposalController->__construct(Array)
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-09-01 10:20:33 --> syntax error, unexpected 'break' (T_BREAK)
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-01 12:48:08 --> Too few arguments to function App\Controllers\ProposalController::addAccessoriesSauna(), 0 passed in C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php on line 155 and exactly 1 expected
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(155): App\Controllers\ProposalController->addAccessoriesSauna()
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(31): App\Controllers\ProposalController->create_saunas()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(18): App\Controllers\ProposalController->create_proposal()
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): App\Controllers\ProposalController->__construct(Array)
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
