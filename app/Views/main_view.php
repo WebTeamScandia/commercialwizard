@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<form action="<?= base_url();?>/index.php/home/createProposal" method="post" style="padding-bottom:80px">
+<form action="" method="post" style="padding-bottom:80px">
   <div class="row">
     <div class="col">
       <div class="form-detail mb-5" style="padding-bottom:22px">
@@ -290,7 +290,7 @@
   }
 
   function showSaunasAccessories() {
-    formsContainer = document.getElementById("saunas-accessories");
+    formsContainer = document.getElementById("sauna-accessories");
     numSaunas = document.getElementById("num-saunas").value;
     qtyOfCurrentForms = formsContainer.getElementsByTagName("li").length;
     if(qtyOfCurrentForms < numSaunas) {

@@ -12,8 +12,12 @@
         private $name;
         private $qty;
         private $description;
-        private $price;
+        private $base_price;
         private $room_type;
+        
+        /*the real price of the accessory will be calculated in the controller as it depends on 
+        the room dimensons and other accessories included in the sauna.*/
+        private $price;
 
         /**
          * @param String $name: the name of the accessory.
@@ -24,22 +28,13 @@
 
             $this->name = $name;
             $this->qty = $qty;
-
-            switch(strtolower($room_type)) {
-                case 'sauna':
-                    $this->$room_type = strtolower($room_type);
-                break;
-                case 'steam':
-                    $this->$room_type = strtolower($room_type);
-                    break;
-                default:
-                    throw new UnexpectedValueException('Error: Invalid accessory room type.');
-                break;
-            }
+            $this->$room_type = strtolower($room_type);
 
             $this->description = $this->get_db_description();
             
-            $this->price = $this->get_db_price();
+            $this->base_price = $this->get_db_price();
+
+            $this->price = $this->base_price;
         }
 
         private function get_db_description() {
@@ -116,6 +111,14 @@
                 $this->price = $price;
 
                 return $this;
+        }
+
+        /**
+         * Get the value of base_price
+         */
+        public function getBasePrice()
+        {
+                return $this->base_price;
         }
     }
 ?>

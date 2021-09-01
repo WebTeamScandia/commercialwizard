@@ -106,11 +106,26 @@
     </div>
   </div>
   <div class="row mb-3 align-items-center">
-    <div class="col offset-1">
+    <div class="col-4 offset-1">
       <div class="form-check form-switch">
         <label for="cedar-backrest" class="form-check-label">Cedar Backrest</label>
         <input type="checkbox" class="form-check-input" name="cedar-backrest[]" id="cedar-backrest">
       </div>
+    </div>
+    <div class="col-2">
+      <label for="project" class="form-label">Project Type</label>
+    </div>
+    <div class="col-3">
+      <select class="form-select" name="project[]" id="project">
+        <option value="0">Select Option</option>
+        <option value="la-fitness">LA Fitness</option>
+        <option value="golds-gym">Gold's Gym</option>
+        <option value="ymca">YMCA</option>
+        <option value="condominiums">Condominiums</option>
+        <option value="residentials">Single Residentials</option>
+        <option value="universities">Universities</option>
+        <option value="scandia">SCANDIA</option>
+      </select>
     </div>
   </div>
   <div class="row mb-3 align-items-center">

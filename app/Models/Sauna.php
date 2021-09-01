@@ -2,12 +2,20 @@
 
 use CodeIgniter\Model;
 
+/**
+ * The following params are set only through setter methods
+ * @param array[Accessory] accessories [Default value = empty array].
+ * @param boolean is_condominium: Saunas for condominiums must have this value set as true. Other type of sauna projects (LA Fitness, Gold's gym, YMCA, etc.) must have this value set as false.
+ * @param boolean has_full_length_board: includes the full length board accessory.
+ * @param string upgrade [ecosauna | modular | handfinish | none]: specifies if the Sauna has any upgrade selected.
+ */
 class Sauna extends Model{
 
     private $width;
     private $length;
     private $height;
     private $accesories;
+    private $init_price;
     private $price;
     private $heater_type;
     private $heater_price;
@@ -28,15 +36,9 @@ class Sauna extends Model{
      * @param number heater_price
      * @param String heater_watt: the amont of power required for the sauna room.
      * @param number price: the base price for the sauna room.
-     *   
-     * Optional params
-     * @param array[Accessory] accessories [Default value = empty array].
-     * @param boolean is_condominium: Saunas for condominiums must have this value set as true. Other type of sauna projects (LA Fitness, Gold's gym, YMCA, etc.) must have this value set as false.
-     * @param boolean has_full_length_board: includes the full length board accessory.
-     * @param string upgrade [eco-sauna | modular | handfinish]: specifies if the Sauna has any upgrade selected.
      * @param number shipping_cost: additional cost for shipping, specified by the user.
      */
-    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $price, $shipping_cost) {
+    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $init_price, $price, $shipping_cost) {
         
         $this->width = $width;
         $this->height = $height;
@@ -44,16 +46,23 @@ class Sauna extends Model{
         $this->price = $price;
         $this->heater_type = $heater_type;
         $this->heater_price = $heater_price;
-        $this->$heater_watt = $heater_watt;
-        $this->$pc = $pc;
-        $this->$shipping_cost = $shipping_cost;
+        $this->heater_watt = $heater_watt;
+        $this->pc = $pc;
+        $this->shipping_cost = $shipping_cost;
+
+        $this->accessories = [];
+        $this->is_condominium = false;
+        $this->has_full_length_board = false;
+        $this->upgrade = 'none';
+        $this->shipping_cost = 0;
     }
 
-    public function addAccessory($accessory) {
+    public function add_accessory($accessory) {
         array_push($this->accsessories, $accessory);
+        $this->price += $accessory->getPrice() * $accessory->getQty();
     }
 
-    public function changeBasePrice($new_price) {
+    public function change_base_price($new_price) {
         //db stuff here
     }
 
@@ -307,41 +316,21 @@ class Sauna extends Model{
 
 
     /**
-     * Get the value of discount
+     * Get the value of init_price
      */
-    public function getDiscount()
+    public function getInitPrice()
     {
-        return $this->discount;
+        return $this->init_price;
     }
 
     /**
-     * Set the value of discount
+     * Set the value of init_price
      *
      * @return  self
      */
-    public function setDiscount($discount)
+    public function setInitPrice($init_price)
     {
-        $this->discount = $discount;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of sales_tax
-     */
-    public function getSalesTax()
-    {
-        return $this->sales_tax;
-    }
-
-    /**
-     * Set the value of sales_tax
-     *
-     * @return  self
-     */
-    public function setSalesTax($sales_tax)
-    {
-        $this->sales_tax = $sales_tax;
+        $this->init_price = $init_price;
 
         return $this;
     }
