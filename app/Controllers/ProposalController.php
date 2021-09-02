@@ -22,8 +22,11 @@ class ProposalController extends BaseController {
 		$saunas = [];
 		$steams = [];
 
+        $prj_name = $this->user_inputs['prj-name'];
+        $shipping_address = $this->user_inputs['prj-address'];
+        $zip = $this->user_inputs['prj-zip'];
+        $author = $this->user_inputs['prj-author'];
 		$discount = intval($this->user_inputs['discount']);
-
 		$sales_tax = intval($this->user_inputs['tax']);
 
         if(isset($this->user_inputs['sauna'])) {
@@ -36,7 +39,7 @@ class ProposalController extends BaseController {
 			
 		}
 
-        $proposal = new Proposal($discount, $sales_tax, $saunas, $steams);
+        $proposal = new Proposal($prj_name, $shipping_address, $zip, $author, $discount, $sales_tax, $saunas, $steams);
 
     }
 
