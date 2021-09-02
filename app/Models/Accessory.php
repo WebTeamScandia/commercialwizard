@@ -2,13 +2,28 @@
     namespace App\Models;
 
     use CodeIgniter\Model;
-    use CodeIgniter\Database\ConnectionInterface;
 
-    class Accessory {
-        protected $database;
-
-        protected $allowed_fields = ['name','description','price','price_is_base'];
-
+    class Accessory extends Model{
+        //----- CODEIGNITER REQUIRED ATTRIBUTES -----
+        protected $table      = 'sauna_accessories';
+        protected $primaryKey = 'id';
+    
+        protected $useAutoIncrement = true;
+    
+        protected $returnType     = 'array';
+        protected $useSoftDeletes = true;
+    
+        protected $allowedFields = ['accessory', 'description', 'price', 'price_is_base'];
+    
+        protected $useTimestamps = false;
+        # protected $createdField  = 'created_at';
+        # protected $updatedField  = 'updated_at';
+        # protected $deletedField  = 'deleted_at';
+    
+        protected $validationRules    = [];
+        protected $validationMessages = [];
+        protected $skipValidation     = false;
+        //-------------------------------------------
         private $name;
         private $qty;
         private $description;
@@ -24,11 +39,11 @@
          * @param String $room_type ["sauna" | "steam"]: indicates if the accessory belongs to a Sauna room or a Steam room.
          * @param Number $qty [default value = 1]: number of accessories of the same type included in a single room.
          */
-        public function __construct($name, $room_type, $qty = 1) {
+        public function __construct($name, $room_type, $qty) {
 
             $this->name = $name;
             $this->qty = $qty;
-            $this->$room_type = strtolower($room_type);
+            $this->room_type = $room_type;
 
             $this->description = $this->get_db_description();
             
@@ -38,22 +53,34 @@
         }
 
         private function get_db_description() {
+            //$db = db_connect();
             if($this->room_type == 'sauna') {
-                //"SELECT description FROM scandiawizard.sauna_accessories WHERE name =" . $this->name;
-                return $this->database->table('sauna_accessories')->select('description')->where(['name' => $this->name])->get()->getRow();
+               /* $sql = "SELECT description FROM sauna_accessories WHERE accessory = ? ";
+                $results = $db->query($sql,$this->name);
+                echo '<pre>';
+                 print_r($results);
+                echo '<pre>';*/
             }
             else {
-                return $this->database->table('steam_accessories')->select('description')->where(['name' => $this->name])->get()->getRow();
+                //return $this->database->table('steam_accessories')->select('description')->where(['name' => $this->name])->get()->getRow();
             }
+            return ":)";
+
         }
 
         private function get_db_price() {
+            $db = \Config\Database::connect();
+            $price = 0;
             if($this->room_type == 'sauna') {
-                return $this->database->table('sauna_accessories')->select('price')->where(['name' => $this->name])->get()->getRow();
+                $builder = $db->table('sauna_accessories');
+                $result = $builder->where('accessory',$this->name)->get()->getResult();
+                $price = $result[0]->price;
+                $this->base_price = $price;
             }
             else {
-                return $this->database->table('steam_accessories')->select('price')->where(['name' => $this->name])->get()->getRow();
+                //return $this->database->table('steam_accessories')->select('price')->where(['name' => $this->name])->get()->getRow();
             }
+            return $price;
         }
 
 

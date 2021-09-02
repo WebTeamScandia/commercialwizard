@@ -158,7 +158,7 @@ class ProposalController extends BaseController {
         }
         else {
             for($i=0; $i<count($this->saunas); $i++) {
-                $this->addAccessoriesSauna($saunas[$i], $i);
+                $this->addAccessoriesSauna($this->saunas[$i], $i);
             }
         }
 
@@ -347,7 +347,7 @@ class ProposalController extends BaseController {
         }
 
         if(isset($this->user_inputs['warranty'][$sauna_index])) {
-            $accessory = new Accessory('Warranty','sauna',1);
+            $accessory = new Accessory('Warranty', 'sauna', 1);
             $sauna->add_accessory($accessory);
         }
         
@@ -457,6 +457,7 @@ class ProposalController extends BaseController {
 		return $heater_info;
 	}
 
+    /* This could be part of the Sauna Model or smth, but I will leave it like this because of time reasons */
     public function calculateSaunaInitPrice($width, $length, $height, $heater_price) {
 		$init_price = 0;
 		$area = $width * $length;
@@ -464,6 +465,7 @@ class ProposalController extends BaseController {
 		$bench_cost = ($width - 1 + $length) * 125;
 		$trim_cost = $width * $length * 3.75;
 		$door_cost = 375;
+        $init_price = $wall_cost + $bench_cost + $trim_cost + $door_cost;
 		if($area >= 16 && $area <= 25) {
 			$init_price += 250;
 		}

@@ -58,7 +58,7 @@ class Sauna extends Model{
     }
 
     public function add_accessory($accessory) {
-        array_push($this->accsessories, $accessory);
+        array_push($this->accessories, $accessory);
         $this->price += $accessory->getPrice() * $accessory->getQty();
     }
 
