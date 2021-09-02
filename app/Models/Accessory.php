@@ -53,18 +53,21 @@
         }
 
         private function get_db_description() {
-            //$db = db_connect();
+            $db = \Config\Database::connect();
+            $description = '';
             if($this->room_type == 'sauna') {
-               /* $sql = "SELECT description FROM sauna_accessories WHERE accessory = ? ";
-                $results = $db->query($sql,$this->name);
-                echo '<pre>';
-                 print_r($results);
-                echo '<pre>';*/
+                $builder = $db->table('sauna_accessories');
+                $result = $builder->where('accessory',$this->name)->get()->getResult();
+                $description = $result[0]->description;
+                $this->description = $description;
             }
             else {
-                //return $this->database->table('steam_accessories')->select('description')->where(['name' => $this->name])->get()->getRow();
+                /*$builder = $db->table('steam_accessories');
+                $result = $builder->where('accessory',$this->name)->get()->getResult();
+                $description = $result[0]->description;
+                $this->description = $description;*/
             }
-            return ":)";
+            return $description;
 
         }
 
@@ -78,7 +81,10 @@
                 $this->base_price = $price;
             }
             else {
-                //return $this->database->table('steam_accessories')->select('price')->where(['name' => $this->name])->get()->getRow();
+                /*$builder = $db->table('steam_accessories');
+                $result = $builder->where('accessory',$this->name)->get()->getResult();
+                $price = $result[0]->price;
+                $this->base_price = $price;*/
             }
             return $price;
         }

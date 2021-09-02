@@ -12,17 +12,16 @@ class ProposalController extends BaseController {
     private $user_inputs;
     private $saunas;
     private $steams;
+    private $proposal_model;
 
     public function __construct($user_inputs) {
         $this->user_inputs = $user_inputs;
-        $this->create_proposal();
     }
 
-    public function create_proposal() {
-		$saunas = [];
-		$steams = [];
+    public function createProposal() {
 
         $prj_name = $this->user_inputs['prj-name'];
+        $prj_date = $this->user_inputs['date'];
         $shipping_address = $this->user_inputs['prj-address'];
         $zip = $this->user_inputs['prj-zip'];
         $author = $this->user_inputs['prj-author'];
@@ -30,7 +29,7 @@ class ProposalController extends BaseController {
 		$sales_tax = intval($this->user_inputs['tax']);
 
         if(isset($this->user_inputs['sauna'])) {
-
+            
 			$this->create_saunas();
 			
 		}
@@ -39,8 +38,8 @@ class ProposalController extends BaseController {
 			
 		}
 
-        $proposal = new Proposal($prj_name, $shipping_address, $zip, $author, $discount, $sales_tax, $saunas, $steams);
-
+        $this->proposal_model = new Proposal($prj_name, $prj_date, $shipping_address, $zip, $author, $discount, $sales_tax, $this->saunas, $this->steams);
+        
     }
 
     private function create_saunas() {
@@ -68,7 +67,7 @@ class ProposalController extends BaseController {
 
 			$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
-			$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+			$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
 			
 			for($i=0; $i<$num_saunas; $i++) {
 				array_push($this->saunas, $sauna);
@@ -96,7 +95,7 @@ class ProposalController extends BaseController {
 
 				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
-				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
 
 				array_push($this->saunas, $sauna);
 			}
@@ -122,7 +121,7 @@ class ProposalController extends BaseController {
 
 				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
 
-				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $shipping_cost);
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
 
 				array_push($this->saunas, $sauna);
 			}
@@ -475,4 +474,12 @@ class ProposalController extends BaseController {
 		return $init_price;
 	}
 
+
+    /**
+     * Get the value of proposal_model
+     */
+    public function getProposalModel()
+    {
+        return $this->proposal_model;
+    }
 }

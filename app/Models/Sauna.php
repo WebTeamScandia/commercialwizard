@@ -41,13 +41,14 @@ class Sauna extends Model{
     public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $init_price, $price, $shipping_cost) {
         
         $this->width = $width;
-        $this->height = $height;
         $this->length = $length;
-        $this->price = $price;
+        $this->height = $height;
+        $this->pc = $pc;
         $this->heater_type = $heater_type;
         $this->heater_price = $heater_price;
         $this->heater_watt = $heater_watt;
-        $this->pc = $pc;
+        $this->init_price = $init_price;
+        $this->price = $price;
         $this->shipping_cost = $shipping_cost;
 
         $this->accessories = [];

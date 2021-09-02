@@ -13,8 +13,12 @@ class Home extends BaseController
 		];
 
 		if($this->request->getMethod()=='post') {
-			$proposal = new ProposalController($_POST);
-			//create and redirect to PDF models/views/controllers
+			$proposal_controller = new ProposalController($_POST);
+			$proposal_controller->createProposal();
+			$proposal_model = $proposal_controller->getProposalModel();
+			$pdf_generator = new PdfGenerator($proposal_model);
+			$this->response->setHeader('Content-Type', 'application/pdf');
+			$pdf_generator->printpDF();
 		}
 
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
