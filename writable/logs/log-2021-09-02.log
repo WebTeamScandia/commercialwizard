@@ -1,0 +1,221 @@
+CRITICAL - 2021-09-02 10:52:06 --> Too few arguments to function App\Models\Proposal::__construct(), 8 passed in C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php on line 42 and exactly 9 expected
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(42): App\Models\Proposal->__construct('', '', '', '', 0, 0, Array, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(18): App\Controllers\ProposalController->create_proposal()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(16): App\Controllers\ProposalController->__construct(Array)
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-09-02 10:54:31 --> Undefined variable: date
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(43): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 43, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(18): App\Controllers\ProposalController->create_proposal()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(16): App\Controllers\ProposalController->__construct(Array)
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-09-02 10:54:43 --> syntax error, unexpected 'printPDF' (T_STRING), expecting function (T_FUNCTION) or const (T_CONST)
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(17): spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-02 10:55:13 --> Class 'App\Libraries\fpdf183\fpdf' not found
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(300): include_once()
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#3 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(17): spl_autoload_call('App\\Controllers...')
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-09-02 10:59:25 --> Call to undefined method App\Controllers\ProposalController::getDate()
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(18): App\Controllers\PdfGenerator->printPDF()
+#1 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-09-02 11:05:15 --> Call to undefined method App\Controllers\ProposalController::createProposal()
+#0 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#1 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#4 {main}
+CRITICAL - 2021-09-02 11:07:11 --> Call to a member function setHeader() on null
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(20): App\Controllers\PdfGenerator->printPDF()
+#1 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-09-02 11:08:18 --> Call to a member function setHeader() on null
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#1 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2021-09-02 11:11:19 --> syntax error, unexpected ':'
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Prop...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Prop...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(43): spl_autoload_call('App\\Models\\Prop...')
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(17): App\Controllers\ProposalController->createProposal()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-09-02 11:11:29 --> syntax error, unexpected ':'
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Models\\Prop...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Models\\Prop...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(43): spl_autoload_call('App\\Models\\Prop...')
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(17): App\Controllers\ProposalController->createProposal()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-09-02 11:27:13 --> Undefined property: App\Models\Proposal::$getPrjName
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(37): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined prope...', 'C:\\xampp\\htdocs...', 37, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-09-02 11:49:59 --> Cannot redeclare App\Models\Proposal::getSaunas()
+#0 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+#1 {main}
+CRITICAL - 2021-09-02 11:52:01 --> Undefined variable: proposal
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(37): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 37, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-09-02 12:11:54 --> Undefined variable: sauna
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(54): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#2 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2021-09-02 12:14:39 --> syntax error, unexpected '$this' (T_VARIABLE), expecting function (T_FUNCTION) or const (T_CONST)
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-02 12:46:13 --> syntax error, unexpected '}'
+#0 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(273): CodeIgniter\Autoloader\Autoloader->includeFile('C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\commercialwizard\system\Autoloader\Autoloader.php(247): CodeIgniter\Autoloader\Autoloader->loadInNamespace('App\\Controllers...')
+#2 [internal function]: CodeIgniter\Autoloader\Autoloader->loadClass('App\\Controllers...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(19): spl_autoload_call('App\\Controllers...')
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-02 12:52:01 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\commercialwizard\system\Model.php(602): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\commercialwizard\system\Model.php(761): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(117): CodeIgniter\Model->__get('getHasFullLengt...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(80): App\Controllers\PdfGenerator->getPcDescription(Object(App\Models\Sauna))
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(55): App\Controllers\PdfGenerator->printSaunaRoomAndEquipmentTable(Object(App\Models\Sauna))
+#5 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-09-02 12:57:18 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\commercialwizard\system\Model.php(602): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\commercialwizard\system\Model.php(761): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(117): CodeIgniter\Model->__get('getHasFullLengt...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(80): App\Controllers\PdfGenerator->getPcDescription(Object(App\Models\Sauna))
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(55): App\Controllers\PdfGenerator->printSaunaRoomAndEquipmentTable(Object(App\Models\Sauna))
+#5 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-09-02 12:58:34 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\commercialwizard\system\Model.php(602): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\commercialwizard\system\Model.php(761): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(117): CodeIgniter\Model->__get('getHasFullLengt...')
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(80): App\Controllers\PdfGenerator->getPcDescription(Object(App\Models\Sauna))
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(55): App\Controllers\PdfGenerator->printSaunaRoomAndEquipmentTable(Object(App\Models\Sauna))
+#5 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#8 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#10 {main}
+CRITICAL - 2021-09-02 14:07:29 --> Undefined offset: 6
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(91): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined offse...', 'C:\\xampp\\htdocs...', 91, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(55): App\Controllers\PdfGenerator->printSaunaRoomAndEquipmentTable(Object(App\Models\Sauna))
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#3 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#7 {main}
+CRITICAL - 2021-09-02 15:06:59 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\commercialwizard\system\Model.php(602): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\commercialwizard\system\Model.php(798): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(122): CodeIgniter\Model->__call('getHeater_watt', Array)
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(55): App\Controllers\PdfGenerator->printSaunaRoomAndEquipmentTable(Object(App\Models\Sauna))
+#4 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#7 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2021-09-02 16:19:10 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\commercialwizard\system\Model.php(602): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\commercialwizard\system\Model.php(798): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(56): CodeIgniter\Model->__call('getAccessories', Array)
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-02 16:27:33 --> Undefined variable: num_salt_panels
+#0 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(363): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', 'C:\\xampp\\htdocs...', 363, Array)
+#1 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(163): App\Controllers\ProposalController->addAccessoriesSauna(Object(App\Models\Sauna), 0)
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\ProposalController.php(33): App\Controllers\ProposalController->create_saunas()
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(17): App\Controllers\ProposalController->createProposal()
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2021-09-02 16:34:34 --> You must set the database table to be used with your query.
+#0 C:\xampp\htdocs\commercialwizard\system\Model.php(602): CodeIgniter\Database\BaseConnection->table(NULL)
+#1 C:\xampp\htdocs\commercialwizard\system\Model.php(798): CodeIgniter\Model->builder()
+#2 C:\xampp\htdocs\commercialwizard\app\Controllers\PdfGenerator.php(57): CodeIgniter\Model->__call('getAccesories', Array)
+#3 C:\xampp\htdocs\commercialwizard\app\Controllers\Home.php(21): App\Controllers\PdfGenerator->printPDF()
+#4 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(928): App\Controllers\Home->index()
+#5 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(436): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+#6 C:\xampp\htdocs\commercialwizard\system\CodeIgniter.php(336): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\commercialwizard\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#8 {main}

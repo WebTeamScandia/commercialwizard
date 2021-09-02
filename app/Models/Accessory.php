@@ -24,6 +24,7 @@
         protected $validationMessages = [];
         protected $skipValidation     = false;
         //-------------------------------------------
+        
         private $name;
         private $qty;
         private $description;

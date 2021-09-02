@@ -360,7 +360,7 @@ class ProposalController extends BaseController {
             For one of the wizards, there is an additional cost for the shipping of each salt panel.
             Consider adding an attribute to the Sauna model for this and setting its value here.
             */
-            $accessory = new Accessory('Himalayan Salt Panels', 'sauna', $num_salt_panels);
+            $accessory = new Accessory('Himalayan Salt Panels', 'sauna', $num_salt);
             $sauna->add_accessory($accessory);
         }
 

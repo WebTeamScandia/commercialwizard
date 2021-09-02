@@ -310,9 +310,9 @@ class Sauna extends Model{
     /**
      * Get the value of accesories
      */
-    public function getAccesories()
+    public function getAccessories()
     {
-        return $this->accesories;
+        return $this->accessories;
     }
 
 
