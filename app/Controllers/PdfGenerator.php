@@ -271,14 +271,61 @@ class PdfGenerator extends BaseController {
 
     private function printAllSaunasTotalTable() {
         $saunas = $this->proposal->getSaunas();
+        $saunas_total = 0;
         for($i=0;$i<count($saunas);$i++){
             $sauna = $saunas[$i];
             $this->pdf->SetX(25);
-            $this->pdf->Cell(105,8,'  Sauna #' . ($i+1) . ' total:',1,0);
-            $this->pdf->Cell(60,8,'  $' . number_format($sauna->getPrice()),1,1);
+            $this->pdf->Cell(90,8,'  Sauna #' . ($i+1) . ' total:',1,0);
+            $this->pdf->Cell(40,8,'  $' . number_format($sauna->getPrice()) . '  ',1,1,'R');
+            $saunas_total += $sauna->getPrice();
         }
+
+        $discount_total = round($saunas_total * $this->proposal->getDiscount() / 100);
         $this->pdf->SetX(25);
-        $this->pdf->Cell()
+        $this->pdf->Cell(90,8,'  Discount Amount (' . $this->proposal->getDiscount() . '%):',1,0);
+        $this->pdf->Cell(40,8,'-$' . number_format($discount_total) . '  ',1,1,'R');
+
+        $tax_total = round($saunas_total * $this->proposal->getSalesTax() / 100);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(90,8,'  Sales Tax Amount (' . $this->proposal->getSalesTax() . '%):',1,0);
+        $this->pdf->Cell(40,8,'$' . number_format($tax_total) . '  ',1,1,'R');
+
+        $shipping_total = round(count($saunas) * $saunas[0]->getShippingCost());
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(90,8,'  Shipping Amount ($' . number_format($saunas[0]->getShippingCost()) . ' per Sauna Room):',1,0);
+        $this->pdf->Cell(40,8,'$' . number_format($shipping_total) . '  ',1,1,'R');
+
+        $proposal_total = $saunas_total - $discount_total + $tax_total + $shipping_total;
+        $this->pdf->SetX(25);
+		$this->pdf->SetFont('Times','B',9);
+        $this->pdf->Cell(90,8,'  Total Amount with Options & Shipping: ',1,0);
+        $this->pdf->Cell(40,8,'$' . number_format($proposal_total) . '  ',1,1,'R');
+
+        # saunas notes box
+        $this->pdf->SetX(25);
+        $pos_y = $this->pdf->GetY();
+        $this->pdf->Cell(130,45,'',1,1);
+        $this->pdf->SetY($pos_y);
+        $this->pdf->SetX(25);
+
+        # sauna notes content
+        $this->pdf->Cell(130,5,'',0,1);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  Important Payment Terms and Conditions',0,1);
+		$this->pdf->SetFont('Times','',9);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  *50% deposit required to begin production',0,1);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  *Balance due prior to shipping.',0,1);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  *Sales tax and shipping subject to change upon final approval.',0,1);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  *Includes One-Year Warranty on all heater parts installed in a commercial environment',0,1);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  one year from the date final payment has been received.',0,1);
+        $this->pdf->SetX(25);
+        $this->pdf->Cell(130,5,'  *Product proposal excludes Am-Finn Set-Up Services.',0,1);
+
     }
 
     private function printTermsAndConditions(){
