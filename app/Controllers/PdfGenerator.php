@@ -51,16 +51,22 @@ class PdfGenerator extends BaseController {
             $this->pdf->Ln(10);
             $this->pdf->SetFont('Times','',9);
             
-            foreach($saunas as $sauna) {
-                $this->printSaunaRoomAndEquipmentTable($sauna);
+            for($i=0;$i<count($saunas);$i++) {
+                $sauna = $saunas[$i];
+                $this->printSaunaRoomAndEquipmentTable($sauna, $i+1);
                 
                 $upgrades = $sauna->getAccessories();
                 if(!empty($upgrades)) {
-                    $this->pdf->Cell(100,5,':)',0,0);
-                    $this->printSelectedUpgradesTable($upgrades);
+                    $this->printSelectedUpgradesTable($upgrades, $i+1);
                 }
-                
-                //$this->printsaunaTotalTable($sauna);
+                //-------------------- Subtotal with selected upgrades --------------------start
+                $this->pdf->SetFont('Times','B',9);
+                $this->pdf->SetX(25);
+                $this->pdf->Cell(105,8,'  Subotal - Sauna Room with selected options:',1,0);
+                $this->pdf->Cell(60,8,'$' . number_format($sauna->getPrice()) . '  ',1,1,'R');
+                $this->pdf->SetFont('Times','',9);
+                //-------------------- Subtotal with selected upgrades --------------------end
+                $this->pdf->Ln(10);
             }
             $this->printAllSaunasTotalTable();
         }
@@ -70,18 +76,18 @@ class PdfGenerator extends BaseController {
         $this->pdf->Output();
     }
 
-    private function printSaunaRoomAndEquipmentTable($sauna) {
-        //------------------ Table header ------------------
+    private function printSaunaRoomAndEquipmentTable($sauna, $index) {
+        //------------------ Table header ------------------start
         $this->pdf->SetFont('Times','B',9);
         $this->pdf->SetX(25);
-        $this->pdf->Cell(0,10,'SAUNA ROOM AND EQUIPMENT',0,1);
+        $this->pdf->Cell(0,10,'SAUNA ROOM #'. $index .' EQUIPMENT',0,1);
         $this->pdf->SetX(25);
         $this->pdf->Cell(40,8,'  Model', 1, 0);
         $this->pdf->Cell(15,8,'  Qty', 1, 0);
         $this->pdf->Cell(80,8,'  Description', 1, 0);
         $this->pdf->Cell(30,8,'  Price', 1, 1);
-        //--------------------------------------------------
-        //------------------ PC ------------------
+        //------------------ Table header ------------------end
+        //------------------ PC ------------------start
         $description = $this->getPcDescription($sauna);
         $description_substrs = str_split($description, 57);
         $cell_height = count($description_substrs) * 5;
@@ -106,8 +112,8 @@ class PdfGenerator extends BaseController {
         $this->pdf->SetY($y_pos);
         $this->pdf->setX(160);
         $this->pdf->Cell(30,$cell_height,'  $' . number_format($sauna->getInitPrice()), 1, 1);
-        //----------------------------------------
-        //------------------ Door ------------------
+        //------------------ PC ------------------end
+        //------------------ Door ------------------start
         $this->pdf->SetX(25);
         $this->pdf->Cell(40,10,'  Door', 1, 0);
         $this->pdf->Cell(15,10,'  1', 1, 0);
@@ -121,8 +127,8 @@ class PdfGenerator extends BaseController {
         $this->pdf->SetY($y_pos);
         $this->pdf->SetX(160);
         $this->pdf->Cell(30,10,'  included', 1, 1);
-        //------------------------------------------
-        //------------------ Heater ------------------
+        //------------------ Door ------------------end
+        //------------------ Heater ------------------start
         $this->pdf->SetX(25);
         $this->pdf->Cell(40,15,'  Heater ' . $sauna->getPc(), 1, 0);
         $this->pdf->Cell(15,15,'  1', 1, 0);
@@ -138,35 +144,35 @@ class PdfGenerator extends BaseController {
         $this->pdf->SetY($y_pos);
         $this->pdf->SetX(160);
         $this->pdf->Cell(30,15,'  included', 1, 1);
-        //--------------------------------------------
-        //------------------ Control ------------------
+        //------------------ Heater ------------------end
+        //------------------ Control ------------------start
         $this->pdf->SetX(25);
         $this->pdf->Cell(40,8,'  Control', 1, 0);
         $this->pdf->Cell(15,8,'  1', 1, 0);
         $this->pdf->Cell(80,8,'  Sauna control box w/60 minute timer.', 1, 0);
         $this->pdf->Cell(30,8,'  included', 1, 1);
-        //---------------------------------------------
-        //------------------ Accessories ------------------
+        //------------------ Control ------------------end
+        //------------------ Accessories ------------------start
         $this->pdf->SetX(25);
         $this->pdf->Cell(40,8,'  Accessories', 1, 0);
         $this->pdf->Cell(15,8,'  1', 1, 0);
         $this->pdf->Cell(80,8,'  Bucket, Ladle, Thermometer and Light Fixture.', 1, 0);
         $this->pdf->Cell(30,8,'  included', 1, 1);
-        //-------------------------------------------------
-        //------------------ Subtotal ------------------
+        //------------------ Accessories ------------------end
+        //------------------ Subtotal ------------------start
         $this->pdf->SetFont('Times','B',9);
         $this->pdf->SetX(25);
         $this->pdf->Cell(135,8,'  Subtotal - Sauna Room and Equipment:',1,0);
         $this->pdf->Cell(30,8,'  $' . number_format($sauna->getInitPrice()),1,1);
-        //----------------------------------------------
+        //------------------ Subtotal ------------------end
         $this->pdf->Ln(10);
     }
 
-    private function printSelectedUpgradesTable($upgrades) {
-        //------------------ Table header ------------------
+    private function printSelectedUpgradesTable($upgrades, $index) {
+        //------------------ Table header ------------------start
         $this->pdf->SetFont('Times','B',9);
         $this->pdf->SetX(25);
-        $this->pdf->Cell(0,10,'Selected Upgrades',0,1);
+        $this->pdf->Cell(0,10,'Selected Upgrades for Sauna Room #' . $index,0,1);
         $this->pdf->SetX(25);
         $this->pdf->Cell(40,8,'  Product Name', 1, 0);
         $this->pdf->Cell(10,8,'  Qty', 1, 0);
@@ -174,37 +180,105 @@ class PdfGenerator extends BaseController {
         $this->pdf->Cell(30,8,'  Price E/A', 1, 0);
         $this->pdf->Cell(30,8,'  Total', 1, 1);
         $this->pdf->SetFont('Times','',9);
-        $table_content_start_y_pos = $this->pdf->GetY();
-        //--------------------------------------------------
+        //------------------ Table header ------------------end
         foreach($upgrades as $upgrade) {
+            //-------------------- Getting Cell Height --------------------
             $description = $upgrade->getDescription();
-            $description_lines = str_split($description,40);
-            $price_ea = round($upgrade->getPrice() / $upgrade->getQty());
-            if(count($description_lines) == 1) {
-                $cell_height = 8;
+            $description_lines = str_split($description,35);
+            if(count($description_lines) < 2) {
+                $cell_height_desc = 8;
             }
             else {
-                $cell_height = count($description_lines) * 5;
+                $cell_height_desc = count($description_lines) * 5;
             }
-            $this->pdf->SetX(25);
-            $this->pdf->Cell(40,$cell_height,'  ' . $upgrade->getName(), 1, 0);
+
+            $name = $upgrade->getName();
+            $last_word = '';
+            if(strlen($name) > 25) {
+                $words = explode(' ',$name);
+                $last_word = array_pop($words);
+                $name = implode(' ', $words);
+                $cell_height_name = 10;
+            }
+            else {
+                $cell_height_name = 8;
+            }
+
+            if($cell_height_desc >= $cell_height_name) {
+                $cell_height = $cell_height_desc;
+            }
+            else {
+                $cell_height = $cell_height_name;
+            }
+            //-------------------- Getting Cell Height --------------------end
+            //-------------------- Upgrade Name --------------------start
+            if(!empty($last_word)) {
+                $this->pdf->SetX(25);
+                $this->pdf->Cell(40,$cell_height,'', 1, 0);
+                $name_pos_y = $this->pdf->getY();
+
+                $this->pdf->SetX(25);
+                $this->pdf->Cell(40,5,'  ' . $name, 0, 1);
+                $this->pdf->SetX(25);
+                $this->pdf->Cell(40,5,'  ' . $last_word, 0, 1);
+                $this->pdf->SetY($name_pos_y);
+            }
+            else {
+                $this->pdf->SetX(25);
+                $this->pdf->Cell(40,$cell_height,'  ' . $name, 1, 0);
+            }
+            //-------------------- Upgrade Name --------------------end
+            //-------------------- Upgrade Qty --------------------start
+            $this->pdf->SetX(65);
             $this->pdf->Cell(10,$cell_height,'  ' . $upgrade->getQty(), 1, 0);
-            $y_pos = $this->pdf->GetY();
+            //-------------------- Upgrade Qty --------------------end
+            //-------------------- Upgrade Description --------------------start
+            # draw full description cell
+            $desc_pos_y = $this->pdf->GetY();
             $this->pdf->Cell(55,$cell_height,'',1,0);
-            $this->pdf->Cell(30,$cell_height,'  $' . number_format($price_ea),1,0);
-            $this->pdf->Cell(30,8,'  $' . number_format($upgrade->getPrice()), 1, 1);
-
+            # description lines were stores in $description_lines when getting cell height
+            for($i=0; $i<count($description_lines); $i++) {
+                $line = $description_lines[$i];
+                # if a word gets cut in the middle, we add a '-' to the end of the line
+                if($i+1 < count($description_lines)) {
+                    $next_line = $description_lines[$i+1];
+                }
+                if(ctype_alpha($line[strlen($line) - 1]) && ctype_alpha($next_line[0])) {
+                    $line .= '-';
+                }
+                $this->pdf->SetX(75);
+                $this->pdf->Cell(55,5,'  ' . $line,0,1);
+            }
+            # setting the Y and X coordinates to how they should be if it wasn't necessary to do such a desmother to fit the text to a cell.
+            $this->pdf->SetY($desc_pos_y);
+            $this->pdf->SetX(130);
+            //-------------------- Upgrade Description --------------------end
+            //-------------------- Upgrade Price --------------------start
+            $price = $upgrade->getPrice();
+            $price_ea = round($price / $upgrade->getQty());
+            if($price == 0) {
+                $this->pdf->Cell(30,$cell_height,'  included',1,0);
+                $this->pdf->Cell(30,$cell_height,'  included', 1, 1);
+            }
+            else {
+                $this->pdf->Cell(30,$cell_height,'  $' . number_format($price_ea),1,0);
+                $this->pdf->Cell(30,$cell_height,'  $' . number_format($price), 1, 1);
+            }
+            //-------------------- Upgrade Price --------------------end
         }
-
         
     }
 
-    private function printsaunaTotalTable($sauna) {
-
-    }
-
     private function printAllSaunasTotalTable() {
-
+        $saunas = $this->proposal->getSaunas();
+        for($i=0;$i<count($saunas);$i++){
+            $sauna = $saunas[$i];
+            $this->pdf->SetX(25);
+            $this->pdf->Cell(105,8,'  Sauna #' . ($i+1) . ' total:',1,0);
+            $this->pdf->Cell(60,8,'  $' . number_format($sauna->getPrice()),1,1);
+        }
+        $this->pdf->SetX(25);
+        $this->pdf->Cell()
     }
 
     private function printTermsAndConditions(){

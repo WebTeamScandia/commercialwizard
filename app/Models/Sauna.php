@@ -38,7 +38,7 @@ class Sauna extends Model{
      * @param number price: the base price for the sauna room.
      * @param number shipping_cost: additional cost for shipping, specified by the user.
      */
-    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $init_price, $price, $shipping_cost) {
+    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $init_price, $price) {
         
         $this->width = $width;
         $this->length = $length;
@@ -49,13 +49,12 @@ class Sauna extends Model{
         $this->heater_watt = $heater_watt;
         $this->init_price = $init_price;
         $this->price = $price;
-        $this->shipping_cost = $shipping_cost;
 
         $this->accessories = [];
         $this->is_condominium = false;
         $this->has_full_length_board = false;
         $this->upgrade = 'none';
-        $this->shipping_cost = 0;
+        $this->shipping_cost = 1200;
     }
 
     public function add_accessory($accessory) {
@@ -72,7 +71,7 @@ class Sauna extends Model{
      */
     public function getPrice()
     {
-        return $this->price;
+        return round($this->price);
     }
 
     /**

@@ -147,7 +147,11 @@ class ProposalController extends BaseController {
 
 				$price = $this->calculateSaunaInitPrice($width_ft, $length_ft, $height_ft, $heater_info['price']);
 
-				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price);
+
+                if($shipping_cost > 0) {
+                    $sauna->setShippingCost($shipping_cost);
+                }
 
 				array_push($this->saunas, $sauna);
 			}
@@ -385,6 +389,7 @@ class ProposalController extends BaseController {
             }
             $accessory_price = round($accessory_price);
 
+            $accessory->setPrice($accessory_price);
             $sauna->add_accessory($accessory);
         }
 

@@ -30,8 +30,10 @@ class Proposal {
         $this->shipping_address = $shipping_address;
         $this->zip = $zip;
         $this->author = $author;
+        
         $this->discount = $discount;
         $this->sales_tax = $sales_tax;
+        
         $this->saunas = $saunas;
         $this->steams = $steams;
     }
