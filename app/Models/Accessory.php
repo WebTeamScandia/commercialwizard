@@ -4,26 +4,6 @@
     use CodeIgniter\Model;
 
     class Accessory extends Model{
-        //----- CODEIGNITER REQUIRED ATTRIBUTES -----
-        protected $table      = 'sauna_accessories';
-        protected $primaryKey = 'id';
-    
-        protected $useAutoIncrement = true;
-    
-        protected $returnType     = 'array';
-        protected $useSoftDeletes = true;
-    
-        protected $allowedFields = ['accessory', 'description', 'price', 'price_is_base'];
-    
-        protected $useTimestamps = false;
-        # protected $createdField  = 'created_at';
-        # protected $updatedField  = 'updated_at';
-        # protected $deletedField  = 'deleted_at';
-    
-        protected $validationRules    = [];
-        protected $validationMessages = [];
-        protected $skipValidation     = false;
-        //-------------------------------------------
         
         private $name;
         private $qty;

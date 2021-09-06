@@ -38,7 +38,7 @@ class Sauna extends Model{
      * @param number price: the base price for the sauna room.
      * @param number shipping_cost: additional cost for shipping, specified by the user.
      */
-    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt, $init_price, $price) {
+    public function __construct($width, $length, $height, $pc, $heater_type, $heater_price, $heater_watt) { #remove prices and set them with setters in controller.
         
         $this->width = $width;
         $this->length = $length;
@@ -47,9 +47,9 @@ class Sauna extends Model{
         $this->heater_type = $heater_type;
         $this->heater_price = $heater_price;
         $this->heater_watt = $heater_watt;
-        $this->init_price = $init_price;
-        $this->price = $price;
-
+        
+        $this->init_price = 0;
+        $this->price = 0;
         $this->accessories = [];
         $this->is_condominium = false;
         $this->has_full_length_board = false;
@@ -62,8 +62,115 @@ class Sauna extends Model{
         $this->price += $accessory->getPrice() * $accessory->getQty();
     }
 
-    public function change_base_price($new_price) {
-        //db stuff here
+    /**
+     * @param int change_percentage
+     * @param string change_type [increase | decrease]
+     */
+    public function changeBasePrice($change_percentage, $change_type) {
+        $db = \Config\Database::connect();
+        $builder = $db->table('sauna_equipment');
+        
+        $result = $builder->where('equipment','bench')->get()->getResult();
+        $bench_price = $result[0]->price;
+        
+        $builer->resetQuery();
+        
+        $result = $builder->where('equipment','wall')->get()->getResult();
+        $wall_price = $result[0]->price;
+
+        $builer->resetQuery();
+        
+        $result = $builder->where('equipment','door')->get()->getResult();
+        $door_price = $result[0]->price;
+        
+        $builer->resetQuery();
+        
+        $result = $builder->where('equipment','trim')->get()->getResult();
+        $trim_price = $result[0]->price;
+
+        if($change_type == 'increase') {
+            $new_bench_price = $bench_price;
+            $new_bench_price += $bench_price * $change_percentage / 100;
+
+            $new_wall_price = $wall_price;
+            $new_wall_price += $wall_price * $change_percentage / 100;
+
+            $new_door_price = $door_price;
+            $new_door_price += $door_price * $change_percentage / 100;
+
+            $new_trim_price = $trim_price;
+            $new_trim_price += $trim_price * $change_percentage / 100;
+        }
+        else {
+            $new_bench_price = $bench_price;
+            $new_bench_price -= $bench_price * $change_percentage / 100;
+
+            $new_wall_price = $wall_price;
+            $new_wall_price -= $wall_price * $change_percentage / 100;
+
+            $new_door_price = $door_price;
+            $new_door_price -= $door_price * $change_percentage / 100;
+
+            $new_trim_price = $trim_price;
+            $new_trim_price -= $trim_price * $change_percentage / 100;
+        }
+
+        $builer->resetQuery();
+        $data = [
+            'price' => $new_bench_price;
+        ];
+        $builder->where('equipment','bench');
+        $builder->update($data);
+
+        $builer->resetQuery();
+        $data = [
+            'price' => $new_wall_price;
+        ];
+        $builder->where('equipment','wall');
+        $builder->update($data);
+
+        $builer->resetQuery();
+        $data = [
+            'price' => $new_door_price;
+        ];
+        $builder->where('equipment','door');
+        $builder->update($data);
+
+        $builer->resetQuery();
+        $data = [
+            'price' => $new_trim_price;
+        ];
+        $builder->where('equipment','bench');
+        $builder->update($data);
+
+    }
+
+    public function getBenchBasePrice() { 
+        $db = \Config\Database::connect();
+        $builder = $db->table('sauna_equipment');
+        $result = $builder->where('equipment','bench')->get()->getResult();
+        $price = $result[0]->price;
+    }
+
+    public function getWallBasePrice() {
+        $db = \Config\Database::connect();
+        $builder = $db->table('sauna_equipment');
+        $result = $builder->where('equipment','wall')->get()->getResult();
+        $price = $result[0]->price;
+    }
+
+    public function getDoorBasePrice() {
+        $db = \Config\Database::connect();
+        $builder = $db->table('sauna_equipment');
+        $result = $builder->where('equipment','door')->get()->getResult();
+        $price = $result[0]->price;
+    }
+
+    public function getTrimBasePrice() {
+        $db = \Config\Database::connect();
+        $builder = $db->table('sauna_equipment');
+        $result = $builder->where('equipment','trim')->get()->getResult();
+        $price = $result[0]->price;
     }
 
     /**

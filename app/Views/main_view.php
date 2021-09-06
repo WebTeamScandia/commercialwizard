@@ -170,20 +170,14 @@
   </div>
 
   <div class="saunas-forms">
-    <ul class="mb-5" id="saunas-dims" style="display:none">
-      <li>
-        <?= view("components/sauna_measurements")?>
-      </li>
+    <ul id="saunas-dims" style="display:none">
+
     </ul>
-    <ul class="mb-5" id="saunas-heaters" style="display:none">
-      <li>
-        <?= view("components/sauna_heater")?>
-      </li>
+    <ul id="saunas-heaters" style="display:none">
+      
     </ul>
-    <ul class="mb-5" id="sauna-accessories" style="display:none">
-      <li>
-        <?= view("components/sauna_accessories")?>
-      </li>
+    <ul id="saunas-accessories" style="display:none">
+      
     </ul>
   </div>
   
@@ -192,6 +186,23 @@
   </div>
 </form>
 
+<script type="text/html" id="sauna-dims-script">
+  <li class="mb-5">
+    <?= view("components/sauna_measurements")?>
+  </li>
+</script>
+
+<script type="text/html" id="sauna-heater-script">
+  <li class="mb-5">
+    <?= view("components/sauna_heater")?>
+  </li>
+</script>
+
+<script type="text/html" id="sauna-accessories-script">
+  <li class="mb-5">
+    <?= view("components/sauna_accessories")?>
+  </li>
+</script>
 
 <script> 
   function showSaunaConfigsTable() {
@@ -243,75 +254,48 @@
     formsContainer = document.getElementById("saunas-dims");
     numSaunas = document.getElementById("num-saunas").value;
     qtyOfCurrentForms = formsContainer.getElementsByTagName("li").length;
-    if(qtyOfCurrentForms < numSaunas) {
-      missingForms = numSaunas - qtyOfCurrentForms;
-      for(i=0; i<missingForms; i++) {
-        child = formsContainer.lastChild;
-        clone = child.cloneNode(true);
-        clone.id = i;
-        console.log(clone);
-        formsContainer.append(clone);
-      }
+    dimsTable = document.getElementById("sauna-dims-script").textContent;
+
+    dimsTables = '';
+    for(i=0;i<numSaunas;i++){
+      dimsTables += dimsTable;
     }
-    else if(qtyOfCurrentForms > numSaunas) {
-      excessForms = qtyOfCurrentForms - numSaunas;
-      for(i=0; i<excessForms; i++) {
-        child = formsContainer.lastChild;
-        formsContainer.removeChild(child);
-      }
-    }
+
+    formsContainer.innerHTML = dimsTables;
+
     formsContainer.style.display = "block";
-    return false;
   }
 
   function showSaunasHeater() {
     formsContainer = document.getElementById("saunas-heaters");
     numSaunas = document.getElementById("num-saunas").value;
     qtyOfCurrentForms = formsContainer.getElementsByTagName("li").length;
-    if(qtyOfCurrentForms < numSaunas) {
-      missingForms = numSaunas - qtyOfCurrentForms;
-      for(i=0; i<missingForms; i++) {
-        child = formsContainer.lastChild;
-        clone = child.cloneNode(true);
-        clone.id = i;
-        console.log(clone);
-        formsContainer.append(clone);
-      }
+    heaterTable = document.getElementById("sauna-heater-script").textContent;
+
+    heaterTables = '';
+    for(i=0;i<numSaunas;i++){
+      heaterTables += heaterTable;
     }
-    else if(qtyOfCurrentForms > numSaunas) {
-      excessForms = qtyOfCurrentForms - numSaunas;
-      for(i=0; i<excessForms; i++) {
-        child = formsContainer.lastChild;
-        formsContainer.removeChild(child);
-      }
-    }
+
+    formsContainer.innerHTML = heaterTables;
+
     formsContainer.style.display = "block";
-    return false;
   }
 
   function showSaunasAccessories() {
-    formsContainer = document.getElementById("sauna-accessories");
+    formsContainer = document.getElementById("saunas-accessories");
     numSaunas = document.getElementById("num-saunas").value;
     qtyOfCurrentForms = formsContainer.getElementsByTagName("li").length;
-    if(qtyOfCurrentForms < numSaunas) {
-      missingForms = numSaunas - qtyOfCurrentForms;
-      for(i=0; i<missingForms; i++) {
-        child = formsContainer.lastChild;
-        clone = child.cloneNode(true);
-        clone.id = i;
-        console.log(clone);
-        formsContainer.append(clone);
-      }
+    accsTable = document.getElementById("sauna-accessories-script").textContent;
+
+    accsTables = '';
+    for(i=0;i<numSaunas;i++){
+      accsTables += accsTable;
     }
-    else if(qtyOfCurrentForms > numSaunas) {
-      excessForms = qtyOfCurrentForms - numSaunas;
-      for(i=0; i<excessForms; i++) {
-        child = formsContainer.lastChild;
-        formsContainer.removeChild(child);
-      }
-    }
+
+    formsContainer.innerHTML = accsTables;
+
     formsContainer.style.display = "block";
-    return false;
   }
 
 </script>

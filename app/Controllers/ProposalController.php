@@ -65,9 +65,16 @@ class ProposalController extends BaseController {
 
 			$heater_info = $this->getHeaterInfo($heater_type, $sauna_volume_ft3);
 
-			$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
+			$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt']);
 
-			$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
+			$price = $this->calculateSaunaInitPrice($sauna, $heater_info['price']);
+
+            $sauna->setInitPrice($price);
+            $sauna->setPrice($price);
+
+            if($shipping_cost > 0) {
+                $sauna->setShippingCost($shipping_cost);
+            }
 			
 			for($i=0; $i<$num_saunas; $i++) {
 				array_push($this->saunas, $sauna);
@@ -93,9 +100,16 @@ class ProposalController extends BaseController {
 
 				$heater_info = $this->getHeaterInfo($heater_type, $sauna_volume_ft3);
 
-				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt']);
 
-				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
+                $price = $this->calculateSaunaInitPrice($sauna, $heater_info['price']);
+
+                $sauna->setInitPrice($price);
+                $sauna->setPrice($price);
+
+                if($shipping_cost > 0) {
+                    $sauna->setShippingCost($shipping_cost);
+                }
 
 				array_push($this->saunas, $sauna);
 			}
@@ -119,9 +133,16 @@ class ProposalController extends BaseController {
 
 				$pc = 'PC' . intval($width_ft) . intval($length_ft) . '-' . intval($height_ft);
 
-				$price = $this->calculateSaunaInitPrice($width, $length, $height, $heater_info['price']);
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt']);
+                
+                $price = $this->calculateSaunaInitPrice($sauna, $heater_info['price']);
 
-				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price, $shipping_cost);
+                $sauna->setInitPrice($price);
+                $sauna->setPrice($price);
+
+                if($shipping_cost > 0) {
+                    $sauna->setShippingCost($shipping_cost);
+                }
 
 				array_push($this->saunas, $sauna);
 			}
@@ -145,9 +166,12 @@ class ProposalController extends BaseController {
 
 				$heater_info = $this->getHeaterInfo($heater_type, $sauna_volume_ft3);
 
-				$price = $this->calculateSaunaInitPrice($width_ft, $length_ft, $height_ft, $heater_info['price']);
+				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt']);
 
-				$sauna =  new Sauna($width, $length, $height, $pc, $heater_type, $heater_info['price'], $heater_info['watt'], $price, $price);
+                $price = $this->calculateSaunaInitPrice($sauna, $heater_info['price']);
+
+                $sauna->setInitPrice($price);
+                $sauna->setPrice($price);
 
                 if($shipping_cost > 0) {
                     $sauna->setShippingCost($shipping_cost);
@@ -464,19 +488,27 @@ class ProposalController extends BaseController {
 		return $heater_info;
 	}
 
-    /* This could be part of the Sauna Model or smth, but I will leave it like this because of time reasons */
-    public function calculateSaunaInitPrice($width, $length, $height, $heater_price) {
+    public function calculateSaunaInitPrice($sauna, $heater_price) {
 		$init_price = 0;
+        
+        $height = $sauna->getHeight();
+        $width = $sauna->getWidth();
+        $length = $sauna->getLength();
+
 		$area = $width * $length;
-		$wall_cost = ($width * $height * 2 + $length * $height * 2 + $width * $length) * 15;
-		$bench_cost = ($width - 1 + $length) * 125;
-		$trim_cost = $width * $length * 3.75;
-		$door_cost = 375;
-        $init_price = $wall_cost + $bench_cost + $trim_cost + $door_cost;
-		if($area >= 16 && $area <= 25) {
+        
+		$wall_cost = ($width * $height * 2 + $length * $height * 2 + $width * $length) * $sauna->getWallBasePrice();
+		$bench_cost = ($width - 1 + $length) * $sauna->getBenchBasePrice();
+		$trim_cost = $width * $length * $sauna->getTrimBasePrice();
+		$door_cost = $sauna->getDoorBasePrice();
+        
+        $init_price = $wall_cost + $bench_cost + $trim_cost + $door_cost + $heater_price;
+		
+        if($area >= 16 && $area <= 25) {
 			$init_price += 250;
 		}
-		return $init_price;
+		
+        return $init_price;
 	}
 
 

@@ -13,6 +13,10 @@ class Home extends BaseController
 		];
 
 		if($this->request->getMethod()=='post') {
+			/*echo '<pre>';
+			print_r($_POST);
+			echo '<pre>';*/
+			
 			$proposal_controller = new ProposalController($_POST);
 			$proposal_controller->createProposal();
 			$proposal_model = $proposal_controller->getProposalModel();
@@ -29,10 +33,26 @@ class Home extends BaseController
 
 	public function admin_panel()
 	{
+		$data = [
+			'meta_title' => 'Admin Panel',
+		];
+
+		if($this->request->getMethod()=='post') {
+
+		}
+
 		header("Expires: Mon, 26 Jul 1997 05:00:00 GMT");
 		header("Cache-Control: no-cache");
 		header("Pragma: no-cache");
-		return view('admin_panel');
+		return view('admin_panel', $data);
+	}
+
+	public function changeBaseRoomPrice() {
+
+	}
+
+	public function changeAccessoryPrice() {
+
 	}
 
 }
